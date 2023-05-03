@@ -1,0 +1,38 @@
+﻿@model List<lubnamaster.Models.OrderDetail>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmain.cshtml";
+}
+
+<h2>Order Details</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ItemName</th>
+            <th>ItemImage</th>
+            <th>Color</th>
+            <th>Size</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderDetail in Model)
+        {
+            <tr>
+                <td>@orderDetail.Itemeoffered.Item.Item_Name</td>
+                <td>
+                    <img style="height:250px; width:250px" src="../../Images/@orderDetail.Itemeoffered.Item.Image1" />
+                </td>
+                <td>@orderDetail.Itemeoffered.ColorName</td>
+                <td>@orderDetail.Itemeoffered.Size</td>
+                <td>@orderDetail.Quantity</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

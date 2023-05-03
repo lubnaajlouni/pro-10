@@ -1,0 +1,424 @@
+﻿
+
+@{
+    ViewBag.Title = "get";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+
+
+<body>
+
+    <!-- Breadcrumb Begin -->
+
+
+
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="/Home/Home"><i class="fa fa-home"></i> Home</a>
+                        <a href="/Home/Items">@Model.m.Gender</a>
+                        <span>@Model.m.Item_Name</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Product Details Section Begin -->
+
+
+
+
+
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__left product__thumb nice-scroll">
+                            <a class="pt active" href="#product-1">
+                                <img src="~/Images/@Model.m.Image1" alt="">
+                            </a>
+                            <a class="pt" href="#product-2">
+                                <img src="~/Images/@Model.m.Image2" alt="">
+                            </a>
+                            <a class="pt" href="#product-3">
+                                <img src="~/Images/@Model.m.Image3" alt="">
+                            </a>
+
+                        </div>
+                        <div class="product__details__slider__content">
+                            <div class="product__details__pic__slider owl-carousel">
+                                <img data-hash="product-1" class="product__big__img" src="~/Images/@Model.m.Image1" alt="">
+                                <img data-hash="product-2" class="product__big__img" src="~/Images/@Model.m.Image2" alt="">
+                                <img data-hash="product-3" class="product__big__img" src="~/Images/@Model.m.Image3" alt="">
+                                <img data-hash="product-4" class="product__big__img" src="~/Images/@Model.m.Image4" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <style>
+                    .pro-qty .qtybtn {
+                        font-size: 14px;
+                        color: #666666;
+                        cursor: pointer;
+                        float: left;
+                        width: 7px;
+                        line-height: 46px;
+                    }
+                </style>
+                <div class="col-lg-6">
+                    <div class="product__details__text">
+                        <h3>@Model.m.Item_Name </h3>
+                        <p>
+                            @Model.m.Item_Description
+                        </p>
+                        <form action="@Url.Action("shopdetails", "Home", new { id = Model.m.Item_Id })" method="post">
+
+
+                            <div class="product__details__price"> @Model.m.ItemPrice JD</div>
+
+                            <div class="product__details__widget">
+                                <ul>
+                                    <li>
+                                        <div class="color__checkbox">
+                                            <label for="ColorName"><b>Available color:</b></label>
+                                            <select id="ColorName" name="ColorName" required>
+                                                <option value="">Select color</option>
+                                                @foreach (var itemOffered in Model.s)
+                                                {
+                                                    <option value="@itemOffered.ColorName" data-color="@itemOffered.ColorName">@itemOffered.ColorName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="size__btn">
+                                            <label for="Size"><b>Available size:</b></label>
+                                            <select id="Size" name="Size" required>
+                                                <option value="">Select size</option>
+                                                @foreach (var itemOffered in Model.z)
+                                                {
+                                                    <option value="@itemOffered.Size" data-color="@itemOffered.ColorName" data-size="@itemOffered.Size">@itemOffered.Size</option>
+
+                                                }
+
+
+
+                                            </select>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <br />
+
+
+                            <div>
+                                Quantity:
+                                <input type="number" name="quantity" id="quantity" value="0" style="width: 15%; height: 30px;" required />
+                            </div>
+                            <br />
+                            <button type="submit" class="btn btn-primary">Add to cart</button>
+                        </form>
+                        <div class="form-container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="product-reviews spad">
+        <div class="container">
+            <div class="comments-container">
+                <div class="slider">
+                    @if (Model.r != null && Model.r.Count > 0)
+                    {
+                        foreach (var review in Model.r)
+                        {
+                            <div class="comment-item">
+                                <h3>@review.Name</h3>
+                                <p>@review.Description</p>
+                                <span class="comment-item__post-date">Posted on @review.Date</span>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p>No feedback yet.</p>
+                    }
+                </div>
+                <br />
+                <br />
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <form method="post" action="@Url.Action("AddReview", "Home", new { id = Model.m.Item_Id })">
+                        <div class="form-group">
+                            <label class="ee" for="description"> Feedback:</label>
+                            <textarea class="form-control textarea-inline" name="description" id="description" required></textarea>
+                            <br />
+                            <button type="submit" class="btn btn-primary">Add Review</button>
+                        </div>
+                        <br />
+                    </form>
+                }
+                else
+                {
+                    <p>You Can <a href="@Url.Action("Login", "Account")">log in</a> to leave feedback.</p>
+                }
+
+                @if (TempData["Message"] != null)
+                {
+                    <p>@TempData["Message"]</p>
+                }
+                <style>
+                    .comments-container {
+                        max-width: 800px;
+                        margin: 0 auto;
+                        position: relative;
+                    }
+
+                    .slider {
+                        display: flex;
+                        flex-wrap: nowrap;
+                        overflow-x: auto;
+                        scroll-snap-type: x mandatory;
+                        scroll-behavior: smooth;
+                    }
+
+                    .comment-item {
+                        background-color: #f7f7f7;
+                        padding: 20px;
+                        border-radius: 5px;
+                        margin-right: 20px;
+                        width: 400px;
+                        flex-shrink: 0;
+                        scroll-snap-align: start;
+                    }
+
+                        .comment-item h3 {
+                            margin-top: 0;
+                        }
+
+                    .comment-item__post-date {
+                        display: block;
+                        font-size: 12px;
+                        color: #666;
+                        margin-top: 10px;
+                    }
+
+                    .slick-dots {
+                        position: absolute;
+                        bottom: 10px;
+                        width: 100%;
+                        text-align: center;
+                    }
+
+                        .slick-dots li {
+                            display: inline-block;
+                            margin: 0 30px;
+                        }
+
+                            .slick-dots li button {
+                                font-size: 0;
+                                line-height: 0;
+                                display: block;
+                                width: 10px;
+                                height: 10px;
+                                border-radius: 50%;
+                                border: none;
+                                background-color: #ccc;
+                                cursor: pointer;
+                                outline: none;
+                            }
+
+                            .slick-dots li.slick-active button {
+                                background-color: #555;
+                            }
+
+                    .form-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        margin-top: 20px;
+                    }
+
+                    .form-group {
+                        flex-basis: 48%;
+                    }
+                </style>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Product Details Section End -->
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+    <!-- Js Plugins -->
+    <script src="/ashion-master/js/jquery-3.3.1.min.js"></script>
+    <script src="/ashion-master/js/bootstrap.min.js"></script>
+    <script src="/ashion-master/js/jquery.magnific-popup.min.js"></script>
+    <script src="/ashion-master/js/jquery-ui.min.js"></script>
+    <script src="/ashion-master/js/mixitup.min.js"></script>
+    <script src="/ashion-master/js/jquery.countdown.min.js"></script>
+    <script src="/ashion-master/js/jquery.slicknav.js"></script>
+    <script src="/ashion-master/js/owl.carousel.min.js"></script>
+    <script src="/ashion-master/js/jquery.nicescroll.min.js"></script>
+    <script src="/ashion-master/js/main.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.slider').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: false,
+                dots: true
+            });
+        });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+        $('#ColorName, #Size').on('change', function () {
+            var color = $('#ColorName').val();
+            var size = $('#Size').val();
+            var url = '@Url.Action("GetQuantityLeft", "Home")';
+            $.ajax({
+                url: url,
+                data: { color: color, size: size },
+                type: 'GET',
+                success: function (data) {
+                    $('#quantity').attr('min', 0);
+                    $('#quantity').attr('max', data);
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+        });
+    });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Fetch cart item count from server
+            $.ajax({
+                url: '@Url.Action("GetCartItemCount", "Home")', // Update with the URL of your server-side action
+                type: 'GET',
+                success: function (data) {
+                    // Update cart item count in the navbar
+                    $('#cart-count').text(data.count);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Handle error if necessary
+                }
+            });
+        });
+
+    </script>
+
+
+    @if (TempData["swal_message"] != null)
+    {
+        <script>
+    swal({
+        title: "@TempData["title"]",
+      text: "@TempData["swal_message"]",
+      icon: "@TempData["icon"]"
+    });
+        </script>
+    }
+</body>
+
+</html >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

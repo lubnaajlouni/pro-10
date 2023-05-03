@@ -1,0 +1,99 @@
+﻿@model IEnumerable<lubnamaster.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmain.cshtml";
+}
+@section Search{
+    <style>
+        header .form-inline {
+            background: #ffffff;
+        }
+    </style>
+
+    @using (Html.BeginForm("Index", "Orders", FormMethod.Post, new { @class = "form-search", role = "form", style = "width:800px; background: #ffffff;" }))
+    {
+
+        <input class="form-control mr-sm-2" type="text" name="search5" id="search5" placeholder="Search ..." aria-label="Search" style="width: 80%; margin-top: 1%; background-color: #eeecf2; border: none;">
+        <button class="btn btn-primary" type="submit" value="search" style="z-index: 5; margin-top: 1%;"><i class="fa fa-search"></i></button>
+        <button class="search-close btn btn-primary" style="z-index: 5; margin-top: 1%;"><i class="fa fa-close"></i></button>
+    }
+
+}
+
+<h2>Orders</h2>
+
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentMethod)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+       
+        @*<th>Total</th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentMethod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+         
+            @*<td>
+                    @ViewBag.Total
+                </td>*@
+
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
+            </td>
+        </tr>
+    }
+
+
+</table>

@@ -1,0 +1,54 @@
+﻿.h2, h4 {
+    font-family: Arial;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-md-5 {
+    width: 100%;
+    order: 2;
+}
+
+.col-md-6 {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.detail-box {
+    margin-left: 0;
+}
+
+.img-box {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .col-md-5 {
+        width: 50%;
+        order: 1;
+    }
+
+    .col-md-6 {
+        width: 50%;
+        text-align: left;
+    }
+
+    .detail-box {
+        margin-left: 50px;
+    }
+
+    .img-box {
+        margin-top: 7%;
+        margin-right: 10%;
+    }
+}
+

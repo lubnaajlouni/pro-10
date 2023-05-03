@@ -1,0 +1,139 @@
+﻿@model IEnumerable<lubnamaster.Models.Review>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmain.cshtml";
+}
+
+@section Search{
+    <style>
+        header .form-inline {
+            background: #ffffff;
+        }
+    </style>
+
+    @using (Html.BeginForm("Index", "Reviews", FormMethod.Post, new { @class = "form-search", role = "form", style = "width:800px; background: #ffffff;" }))
+    {
+
+
+        <input class="form-control mr-sm-2" type="text" name="search5" id="search5" placeholder="Search ..." aria-label="Search" style="width: 80%; margin-top: 1%; background-color: #eeecf2; border: none;">
+        <button class="btn btn-primary" type="submit" value="search" style="z-index: 5; margin-top: 1%;"><i class="fa fa-search"></i></button>
+        <button class="search-close btn btn-primary"  style="z-index: 5; margin-top: 1%;"><i class="fa fa-close"></i></button>
+    }
+
+
+
+}
+
+
+<h2>Index</h2>
+
+<div style="float:right; margin-right:30px">
+    @using (Html.BeginForm("Index", "Reviews", FormMethod.Post, new { role = "form", id = "filter" }))
+    {
+        <label>
+
+            <input type="radio" onclick="submiit()" name="filter" value="1" />
+            Pending
+        </label>
+        <label>
+
+            <input type="radio" onclick="submiit()" name="filter" value="2" />
+            Accepted
+        </label>
+        <label>
+
+            <input type="radio" onclick="submiit()" name="filter" value="3" />
+            All
+        </label>
+
+        @*@Html.ActionLink("Search", "Search", "AspNetUsers", " ", new { @class = "search-close" })
+            <button class="btn btn-primary" type="submit" value="search" style="z-index:5;">Filter</button>*@
+
+
+
+    }
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Approve)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item.Item_Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+
+            <td>
+                @if (User.IsInRole("Admin"))
+                {
+                    if (item.Approve.HasValue && item.Approve.Value)
+                    {
+                        @Html.ActionLink("Approved", "lubna", new { id = item.ReviewId, approve = false }, new { @class = "btn btn-success" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Pending", "lubna", new { id = item.ReviewId, approve = true }, new { @class = "btn btn-danger" })
+                    }
+                }
+                else
+                {
+                    if (item.Approve.HasValue && item.Approve.Value)
+                    {
+                        <span class="label label-success">Approved</span>
+                    }
+                    else
+                    {
+                        <span class="label label-warning">Pending</span>
+                    }
+                }
+                | @Html.ActionLink("Edit", "Edit", new { id = item.ReviewId })
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item.Item_Name)
+            </td>
+            <td>
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.ReviewId }) |
+            </td>
+        </tr>
+    }
+
+</table>
+<script>
+    function submiit() {
+        document.getElementById("filter").submit();
+    }
+</script>

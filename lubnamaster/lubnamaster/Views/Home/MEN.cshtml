@@ -1,0 +1,258 @@
+﻿@model IEnumerable<lubnamaster.Models.Item>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+
+<body>
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div style="display: flex; justify-content: center; align-items: center; height: 13vh; background-color: darkgray;">
+                        <h1 style="text-align: center; font-size: 45px; font-weight: bold; font-family: emoji; ">Men Clothing</h1>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Shop Section Begin -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="shop__sidebar">
+                        <div class="sidebar__categories">
+                            <div class="section-title">
+                                <h4>Options</h4>
+                            </div>
+                            <div class="categories__accordion">
+                                <div class="accordion" id="accordionExample">
+                                    <div class="card">
+                                        @*<div class="card-heading active">
+                                    <a data-toggle="collapse" data-target="#collapseOne">Women</a>
+                                </div>*@
+                                        @*<div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <ul>
+                                            <li><a href="#">Jackets</a></li>
+                                            <li><a href="#">Blouses</a></li>
+                                            <li><a href="#">Dresses</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>*@
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-heading active">
+                                            <a data-toggle="collapse" data-target="#collapseTwo">Sections</a>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li><a href="@Url.Action("MEN", new { categoryId = 1 })">Jackets</a></li>
+                                                    <li><a href="@Url.Action("MEN", new { categoryId = 2 })">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("MEN", new { categoryId = 7 })">Pants</a></li>
+                                                    <li><a href="@Url.Action("WOMEN", new { categoryId = "null" })">All</a></li>
+
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sidebar__categories">
+                            <div class="section-title">
+                                <h4>Shop by Size</h4>
+                            </div>
+                            <div class="size__list color__list">
+                                @using (Html.BeginForm("MEN", "Home", FormMethod.Get, new { role = "form", id = "filter" }))
+                                {
+                                    <input type="hidden" name="categoryId" value="@ViewBag.CategoryId" />
+
+                                    <label>
+                                        <input type="radio" onclick="submitForm()" name="filter" value="1" />
+                                        S
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input type="radio" onclick="submitForm()" name="filter" value="2" />
+                                        M
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input type="radio" onclick="submitForm()" name="filter" value="3" />
+                                        L
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input type="radio" onclick="submitForm()" name="filter" value="4" />
+                                        XL
+                                    </label>
+                                }
+                            </div>
+                        </div>
+                        <br />
+                        <div class="sidebar__categories">
+                            <div class="section-title">
+                                <h4>Shop by color</h4>
+                            </div>
+                            <div class="size__list color__list">
+                                @using (Html.BeginForm("MEN", "Home", FormMethod.Get, new { role = "form", id = "filter" }))
+                                {
+                                    <input type="hidden" name="categoryId" value="@ViewBag.CategoryId" />
+
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="5" />
+                                        green
+                                    </label>
+                                    <br />
+
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="6" />
+                                        black
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="7" />
+                                        white
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="8" />
+                                        blue
+                                    </label>
+                                    <br />
+
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="9" />
+                                        red
+                                    </label>
+                                    <br />
+
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="10" />
+                                        beg
+
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="11" />
+                                        bink
+                                    </label>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-lg-4 col-md-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="../Images/@item.Image1">
+
+                                        <ul class="product__hover">
+                                            <li><a href="../Images/@item.Image1" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                            <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <a href="@Url.Action("shopdetails", "Home" , new {id=item.Item_Id})">
+                                            <h6>@item.Item_Name</h6>
+                                        </a>
+                                        <div class="product__price">@item.ItemPrice JD</div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Section End -->
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+
+ 
+    <script>
+        function submitForm() {
+            document.getElementById("filter").submit();
+        }
+    </script>
+    <script>
+        function submit() {
+            document.getElementById("filter").submit();
+        }
+    </script>
+</body>
+</html>

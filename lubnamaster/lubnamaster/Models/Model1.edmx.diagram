@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="82313b272d204ea19c69e245f0b8e364" Name="Diagram1">
+        <EntityTypeShape EntityType="storemasterModel.C__MigrationHistory" Width="1.5" PointX="8.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.AspNetRole" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.AspNetUser" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.Cart" Width="1.5" PointX="8.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.Categorei" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.City" Width="1.5" PointX="6" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.Itemeoffered" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.Item" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.OrderDetail" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.Order" Width="1.5" PointX="8.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.Review" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="storemasterModel.sysdiagram" Width="1.5" PointX="10.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="storemasterModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.FK_Carts_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.FK_OrderDetails_OrderDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.FK_Orders_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.FK_Reviews_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.FK_Carts_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.FK_Items_Categoreis" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.FK_Orders_Cities" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.FK_Itemeoffereds_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.FK_OrderDetails_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.FK_Reviews_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.FK_OrderDetails_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="storemasterModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

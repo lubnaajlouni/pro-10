@@ -1,0 +1,254 @@
+﻿
+@{
+    ViewBag.Title = "Shopcart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+
+
+<body>
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                        <span>Shopping cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Shop Cart Section Begin -->
+    <section class="shop-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shop__cart__table">
+
+                        @if (Model.Count == 0)
+                        {
+                            <h3>Your cart is currently empty.</h3>
+                        }
+                        else
+                        {
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var cartItem in Model)
+                                    {
+                                        <tr id="@cartItem.CartId">
+                                            <td class="cart__product__item">
+                                                <a href="@Url.Action("shopdetails", "Home" , new {id=@cartItem.Itemeoffered.Item.Item_Id})">
+                                                    <img src="~/Images/@cartItem.Itemeoffered.Item.Image1" alt="" style="height:100%; width:20%;">
+                                                </a>
+                                                <div class="cart__product__item__title">
+                                                    <a href="@Url.Action("shopdetails", "Home" , new {id=@cartItem.Itemeoffered.Item.Item_Id})">
+                                                        <h6>@cartItem.Itemeoffered.Item.Item_Name</h6>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td class="cart__price">@cartItem.Itemeoffered.Item.ItemPrice JD</td>
+
+                                            <td>
+                                                <div>
+                                                    <input type="number" name="quantity" id="quantity_@cartItem.CartId" value="@cartItem.Quantity" min="1" max="@cartItem.Itemeoffered.QuantityLeft" />
+                                                </div>
+                                            </td>
+
+                                            <td class="cart__total">@(cartItem.Quantity * cartItem.Itemeoffered.Item.ItemPrice)</td>
+                                            <td class="cart__close">
+                                                <span class="icon_close" id="close_@cartItem.CartId"></span>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="cart__btn">
+                        <a href="/Home/Items">Continue Shopping</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="cart__btn update__btn">
+                        <a href="/Home/Checkout"><span class="icon_loading"></span> Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Cart Section End -->
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+
+    <script src="/ashion-master/js/jquery-3.3.1.min.js"></script>
+    <script src="/ashion-master/js/bootstrap.min.js"></script>
+    <script src="/ashion-master/js/jquery.magnific-popup.min.js"></script>
+    <script src="/ashion-master/js/jquery-ui.min.js"></script>
+    <script src="/ashion-master/js/mixitup.min.js"></script>
+    <script src="/ashion-master/js/jquery.countdown.min.js"></script>
+    <script src="/ashion-master/js/jquery.slicknav.js"></script>
+    <script src="/ashion-master/js/owl.carousel.min.js"></script>
+    <script src="/ashion-master/js/jquery.nicescroll.min.js"></script>
+    <script src="/ashion-master/js/main.js"></script>
+
+
+
+    <script>
+    $(document).on('change', 'input[name="quantity"]', function() {
+        var cartId = $(this).attr('id').split('_')[1]; // Get the cart ID from the input field's ID
+        var quantity = $(this).val(); // Get the updated quantity
+
+        // Make an AJAX request to update the quantity in the database
+        $.ajax({
+            url: '@Url.Action("UpdateQuantity", "Home")', // Replace with the URL of your controller action
+            type: 'POST',
+            data: { cartId: cartId, quantity: quantity },
+            success: function (result) {
+                // Update the total in the table row with the returned result
+                $('#' + cartId).find('.cart__total').text(result.total);
+
+                // Update the cart item count in the navbar
+                $('#cart-count').text(result.cartItemCount);
+            },
+
+            error: function() {
+                // Handle error
+            }
+        });
+    });
+    </script>
+
+    <script>
+ $(document).on('click', '.icon_close', function() {
+    var cartId = $(this).attr('id').split('_')[1]; // Get the cart ID from the close icon's ID
+
+
+        // Make an AJAX request to delete the item from the database
+        $.ajax({
+            url: '@Url.Action("DeleteCartItem", "Home")', // Replace with the URL of your controller action
+            type: 'POST',
+            data: { cartId: cartId },
+            success: function (result) {
+                // Remove the table row for the deleted item
+                $('#' + cartId).remove();
+
+                // Update the cart item count in the navbar
+                $('#cart-count').text(result.count);
+
+                // Show success or error message
+                alert(result.message);
+            },
+            error: function () {
+                // Handle error
+            }
+        });
+
+     });
+
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Fetch cart item count from server
+            $.ajax({
+                url: '@Url.Action("GetCartItemCount", "Home")', // Update with the URL of your server-side action
+                type: 'GET',
+                success: function (data) {
+                    // Update cart item count in the navbar
+                    $('#cart-count').text(data.count);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Handle error if necessary
+                }
+            });
+        });
+
+    </script>
+
+
+
+
+</body>
+
+</html>
+
+

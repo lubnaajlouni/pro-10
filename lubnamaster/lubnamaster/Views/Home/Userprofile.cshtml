@@ -1,0 +1,331 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width , initial-scale=1.0" />
+    <title>Userprofile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/ashion-master/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion-master/css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+   
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+
+        <div class="offcanvas__logo">
+            <a href="/Home/Home"><img src="/ashion-master/img/logo.png" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="/Home/Home"><img src="/ashion-master/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active">@Html.ActionLink("Home", "Home", "Home")</li>
+                            <li>@Html.ActionLink("Women", "WOMEN", "Home")</li>
+                            <li>@Html.ActionLink("Men", "MEN", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__right">
+                        <div class="header__right__auth">
+                            @Html.Partial("_LoginPartial")
+                        </div>
+                        <ul class="header__right__widget">
+
+                            <li>
+                                <a href="/Home/Shopcart">
+                                    <span class="icon_bag_alt"></span>
+                                    <div class="tip" id="cart-count"></div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <style>
+
+
+
+        body {
+            background: rgb(206 206 238 / 54%);
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 0 solid transparent;
+            border-radius: .25rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+        }
+
+        .me-2 {
+            margin-right: .5rem !important;
+        }
+    </style>
+    <br />
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="/Home/Home"><i class="fa fa-home"></i> Home </a> >
+                        <span>User profile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="container">
+        <div class="main-body">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="https://cdn1.iconfinder.com/data/icons/basic-22/512/1041_boy_c-512.png" alt="Admin"  width="110">
+                                <div class="mt-3">
+                                    @foreach (var asp in ViewBag.aspnet)
+                                    {
+                                        <h4>@asp.FirstName  @asp.LastName</h4>
+                                        <p class="text-secondary mb-1">@asp.Email</p>
+                                    }
+
+                                </div>
+                            </div>
+                            <hr class="my-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    @if (Model.t != null)
+                    {
+                        <div class="card">
+                            <div class="card-body">
+                                @foreach (var order in Model.of)
+                                {
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">FirstName</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" class="form-control" id="FirstName" name="FirstName" value="@order.FirstName" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">LastName</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" class="form-control" id="LastName" name="LastName" value="@order.LastName" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Email</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" class="form-control" id="Email" name="Email" value="@order.Email" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">City</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" class="form-control" id="city" name="city" value="@order.City" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Adress</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" class="form-control" id="adress" name="adress" value="@order.Adress" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">PhoneNumber</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" class="form-control" id="phone" name="phone" value="@order.PhoneNumber" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">PaymentMethod</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" class="form-control" id="PaymentMethod" name="PaymentMethod" value="@order.PaymentMethod" readonly>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Total Order</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" id="PaymentMethod" name="PaymentMethod" value="@ViewBag.subtotal JD" readonly>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="d-flex align-items-center mb-3" style="font-weight:bold;"> My Orders</h5>
+                                        <br />
+
+                                        <form action="@Url.Action("Userprofile", "Home")" method="get">
+                                            <div class="dropdown">
+                                                <p> Order by date</p>
+                                                <select class="btn btn-secondary" type="button" id="order-date" name="orderid">
+                                                    <option value="">Select order</option>
+
+                                                    @foreach (var order in Model.o)
+                                                    {
+                                                        <option value="@order.OrderId">@order.OrderDate</option>
+                                                    }
+
+                                                </select>
+                                            </div>
+                                        </form>
+                                        <br>
+
+                                        @foreach (var orderDetail in Model.d)
+                                        {
+                                            <table class="table" id="orderdetails">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ItemName</th>
+                                                        <th>ItemImage</th>
+                                                        <th>Color</th>
+                                                        <th>Size</th>
+                                                        <th>Quantity</th>
+                                                        <th>order date</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="ordersTableBody">
+                                                    <tr>
+                                                        <td>@orderDetail.Itemeoffered.Item.Item_Name</td>
+                                                        <td>
+                                                            <img style="height:250px; width:250px" src="../../Images/@orderDetail.Itemeoffered.Item.Image1" />
+                                                        </td>
+                                                        <td>@orderDetail.Itemeoffered.ColorName</td>
+                                                        <td>@orderDetail.Itemeoffered.Size</td>
+                                                        <td>@orderDetail.Quantity</td>
+                                                        <td>@orderDetail.Order.OrderDate</td>
+                                                        <td>@(orderDetail.Quantity * orderDetail.Itemeoffered.Item.ItemPrice)</td>
+                                                    </tr>                                                    
+                                                </tbody>
+                                            </table>
+                                        }
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="/ashion-master/js/jquery-3.3.1.min.js"></script>
+    <script src="/ashion-master/js/bootstrap.min.js"></script>
+    <script src="/ashion-master/js/jquery.magnific-popup.min.js"></script>
+    <script src="/ashion-master/js/jquery-ui.min.js"></script>
+    <script src="/ashion-master/js/mixitup.min.js"></script>
+    <script src="/ashion-master/js/jquery.countdown.min.js"></script>
+    <script src="/ashion-master/js/jquery.slicknav.js"></script>
+    <script src="/ashion-master/js/owl.carousel.min.js"></script>
+    <script src="/ashion-master/js/jquery.nicescroll.min.js"></script>
+    <script src="/ashion-master/js/main.js"></script>
+
+
+   <script>
+        $(document).ready(function() {
+  $('#order-date').change(function() {
+    var selectedDate = $(this).val();
+    window.location.href = '@Url.Action("Userprofile", "Home")?orderid=' + selectedDate;
+  });
+});
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Fetch cart item count from server
+            $.ajax({
+                url: '@Url.Action("GetCartItemCount", "Home")', // Update with the URL of your server-side action
+                type: 'GET',
+                success: function (data) {
+                    // Update cart item count in the navbar
+                    $('#cart-count').text(data.count);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    // Handle error if necessary
+                }
+            });
+        });
+
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,226 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+
+
+<body>
+   
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="/Home/Home"><i class="fa fa-home"></i> Home</a>
+                        <span>shop</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Shop Section Begin -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="shop__sidebar">
+                        <div class="sidebar__categories">
+                            <div class="section-title">
+                                <h4>Categories</h4>
+                            </div>
+                            <div class="categories__accordion">
+                                <div class="accordion" id="accordionExample">
+                                    <div class="card">
+                                        <div class="card-heading " data-target="#collapseOne">
+                                            <a data-toggle="collapse" data-target="#collapseOne">Women</a>
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul>
+
+                                                    <li><a href="@Url.Action("Items", new { categoryId = 1, gender = "WOMEN" })">Jackets</a></li>
+                                                    <li><a href="@Url.Action("Items", new { categoryId = 9, gender = "WOMEN" })">Blouses</a></li>
+                                                    <li><a href="@Url.Action("Items", new { categoryId = 8, gender = "WOMEN" })">Dresses</a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-heading" data-target="#collapseTwo">
+                                            <a data-toggle="collapse" data-target="#collapseTwo">Men</a>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse show " data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li><a href="@Url.Action("Items", new { categoryId = 1 , gender = "MEN" })">Jackets</a></li>
+                                                    <li><a href="@Url.Action("Items", new { categoryId = 2 , gender = "MEN"})">T-shirts</a></li>
+                                                    <li><a href="@Url.Action("Items", new { categoryId = 7 , gender = "MEN"})">Pants</a></li>
+
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sidebar__categories">
+                            <div class="section-title">
+                                <h4>Shop by Size</h4>
+                            </div>
+                            <div class="size__list color__list">
+                                @using (Html.BeginForm("Items", "Home", FormMethod.Get, new { role = "form", id = "filter" }))
+                                {
+                                    <input type="hidden" name="categoryId" value="@ViewBag.CategoryId" />
+
+
+                                    <label>
+                                        <input type="radio" onclick="submitForm()" name="filter" value="1" />
+                                        S
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input type="radio" onclick="submitForm()" name="filter" value="2" />
+                                        M
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input type="radio" onclick="submitForm()" name="filter" value="3" />
+                                        L
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input type="radio" onclick="submitForm()" name="filter" value="4" />
+                                        XL
+                                    </label>
+                                }
+                            </div>
+                        </div>
+                        
+                        <div class="sidebar__categories">
+                            <div class="section-title">
+                                <h4>Shop by color</h4>
+                            </div>
+                            <div class="size__list color__list">
+                                @using (Html.BeginForm("Items", "Home", FormMethod.Get, new { role = "form", id = "filter" }))
+                                {
+                                    <input type="hidden" name="categoryId" value="@ViewBag.CategoryId" />
+
+
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="5" />
+                                        green
+                                    </label>
+                                    <br />
+
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="6" />
+                                        black
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="7" />
+                                        white
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="8" />
+                                        blue
+                                    </label>
+                                    <br />
+
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="9" />
+                                        red
+                                    </label>
+                                    <br />
+
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="10" />
+                                        beg
+
+                                    </label>
+                                    <br />
+                                    <label>
+                                        <input type="radio" onclick="submit()" name="filter" value="11" />
+                                        bink
+                                    </label>
+
+                                }
+                            </div>
+                            <br />
+                            <a href="@Url.Action("Items", "Home")" class="btn btn-default" style="background-color: #877b7b; color:white; font-weight: bold;">Clear Filters</a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-md-9">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-lg-4 col-md-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="../Images/@item.Image1">
+
+                                        <ul class="product__hover">
+                                            <li><a href="../Images/@item.Image1" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                            <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <a href="@Url.Action("shopdetails", "Home" , new {id=item.Item_Id})">
+                                            <h6>@item.Item_Name</h6>
+                                        </a>
+                                        <div class="product__price">@item.ItemPrice JD</div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="col-lg-12 text-center">
+                            <div class="pagination__option">
+                                <a href="#">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#"><i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Section End -->
+ 
+
+
+
+
+
+    <script>
+        function submitForm() {
+            document.getElementById("filter").submit();
+        }
+    </script>
+    <script>
+        function submit() {
+            document.getElementById("filter").submit();
+        }
+    </script>
+</body>
+
+</html>
+
+
+

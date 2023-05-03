@@ -1,0 +1,237 @@
+﻿
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+<body>
+
+    <!-- Breadcrumb Begin -->
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__links">
+                        <a href="~/ashion-master/index.html"><i class="fa fa-home"></i> Home</a>
+                        <span>Shopping cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-8">
+                    <form action="@Url.Action("Checkout", "Home")" method="post" class="checkout__form">
+
+                        <h5>Billing detail</h5>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="checkout__form__input">
+                                    <p>First Name </p>
+                                    <input type="text" id="FirstName" name="FirstName" value="@ViewBag.FirstName" readonly />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="checkout__form__input">
+                                    <p>Last Name </p>
+                                    <input type="text" id="LastName" name="LastName" value="@ViewBag.LastName" readonly />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="checkout__form__input">
+                                    <p>Email </p>
+                                    <input type="email" id="Email" name="Email" value="@ViewBag.Email" readonly />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="checkout__form__input">
+                                    <p>Phone <span>*</span></p>
+                                    <input type="text" id="Phone" name="Phone" required pattern="^((\+962)|(00962)|(0))[7-9]{1}[0-9]{7}$" />
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="checkout__form__input">
+                                    <p>City <span>*</span></p>
+                                    <input type="text" id="city" name="city" placeholder="Enter your city" required>
+                                </div>
+                                <div class="checkout__form__input">
+                                    <p>Address <span>*</span></p>
+                                    <input type="text" id="address" name="address" placeholder="Street Address" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Place order</button>
+                    </form>
+
+                </div>
+                @if (Model != null && Model.Count > 0)
+                {
+                    <div class="col-lg-4">
+                        <div class="checkout__order">
+                            <h5>Your order</h5>
+                            <div class="checkout__order__product">
+                                <h6>Item Name :</h6>
+                                <br />
+                                <ul>
+                                    @if (Model != null)
+                                    {
+                                        foreach (var cart in Model)
+                                        {
+
+                                            <li>
+                                                <span class="top__text">@cart.Itemeoffered.Item.Item_Name</span>
+                                                <span class="top__text__right">@((cart.Quantity * cart.Itemeoffered.Item.ItemPrice).ToString("F2")) JD</span>
+                                            </li>
+                                        }
+                                    }
+
+
+                                </ul>
+                            </div>
+                            <div class="checkout__order__total">
+                                <ul>
+                                    <li>Total <span>@ViewBag.Total JD</span></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <!-- Checkout Section End -->
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+
+
+
+
+    <script>
+        document.getElementById("checkoutForm").addEventListener("submit", function (event) {
+            // Prevent form submission
+            event.preventDefault();
+
+            // Clear form fields
+            document.getElementById("FirstName").value = "";
+            document.getElementById("LastName").value = "";
+            document.getElementById("Email").value = "";
+            document.getElementById("Phone").value = "";
+            document.getElementById("city").value = "";
+            document.getElementById("address").value = "";
+
+            // Show success alert
+            alert("Order placed successfully!");
+        });
+    </script>
+    <script>
+        const form = document.querySelector('form');
+        const successMessage = document.querySelector('#success-message');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Perform order processing
+            const response = await fetch('process-order.php', {
+                method: 'POST',
+                body: new FormData(form)
+            });
+
+            if (response.ok) {
+                // Display success message
+                successMessage.style.display = 'block';
+
+                // Clear input fields
+                form.reset();
+            }
+        });
+
+
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if (TempData["swal_message"] != null)
+    {
+        <script>
+    swal({
+      title: "@ViewBag.title",
+      text: "@TempData["swal_message"]",
+      icon: "@ViewBag.icon"
+    });
+        </script>
+}
+
+</body>
+
+</html>

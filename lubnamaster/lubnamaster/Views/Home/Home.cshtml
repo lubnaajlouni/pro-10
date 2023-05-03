@@ -1,0 +1,268 @@
+﻿@model IEnumerable<lubnamaster.Models.Item>
+
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+
+
+<body>
+   
+
+    <!-- Categories Section Begin -->
+    <section class="categories">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 p-0">
+                    <div class="categories__item categories__large__item set-bg"
+                         data-setbg="../Images/sshop1.jpg" style="object-fit: cover; ">
+                        <div class="categories__text">                         
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6 col-sm-6 p-0">
+                            <div class="categories__item set-bg" data-setbg="../Images/men1.jpg">
+                                <div class="categories__text">
+                                    <h4>Men’s fashion</h4>
+                                    <br />
+
+                                    <a href="@Url.Action("MEN", "Home")"> Shop now</a>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-12 col-md-6 col-sm-6 p-0">
+                            <div class="categories__item set-bg" data-setbg="../Images/women1.jpg">
+                                <div class="categories__text">
+                                    <h4>Women’s fashion</h4>
+                                    <br />
+                                    <a href="@Url.Action("WOMEN", "Home")"> Shop now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Section End -->
+    <!-- Product Section Begin -->
+
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="section-title">
+                        <h4>New product</h4>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <ul class="filter__controls">
+                        <li class="active" data-filter="*">All</li>
+
+
+                    </ul>
+                </div>
+            </div>
+            <div class="row property__gallery">
+                @foreach (var item in Model.Take(8)) // show only the first 8 items
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix women">
+                        <div class="product__item">
+                            <div class="product__item__pic set-bg" data-setbg="/Images/@item.Image1">
+
+                                <ul class="product__hover">
+                                    <li><a href="/Images/@item.Image1" class="image-popup"><span class="arrow_expand"></span></a></li>
+
+                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                </ul>
+                            </div>
+                            <div class="product__item__text">
+                                <a href="@Url.Action("shopdetails", "Home" , new {id=item.Item_Id})">
+                                    <h6>@item.Item_Name</h6>
+                                </a>
+
+                                <div class="product__price">@item.ItemPrice JD</div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <style>
+                    .site-btn {
+                        background-color: #CC9C75;
+                        color: #fff;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                    }
+
+                    .trend {
+                        padding-top: 120px;
+                    }
+
+             
+                    
+                </style>
+                <div class="col-lg-12 text-center">
+                    <a href="@Url.Action("Items", "Home")" class="site-btn">View More</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <br />
+    <br />
+    <br />
+    <!-- Product Section End -->
+    <!-- Banner Section Begin -->
+    <section class="banner set-bg" data-setbg="/ashion-master/img/homeimj.png">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7 col-lg-8 m-auto">
+                    <div class="banner__slider owl-carousel">
+                        <div class="banner__item">
+                            <div class="banner__text">
+                                <span> Spring Collection</span>
+                                <h1>Discover the Latest Fashion Trends </h1>
+
+                            </div>
+                        </div>
+                        <div class="banner__item">
+                            <div class="banner__text">
+                                <span> Spring Collection</span>
+                                <h1> From casual to formal wear</h1>
+
+
+                            </div>
+                        </div>
+                        <div class="banner__item">
+                            <div class="banner__text">
+                                <span> Spring Collection</span>
+                                <h1> we have you covered</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br />
+   
+    <!-- Services Section Begin -->
+    <section class="services spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="services__item">
+                        <i class="fa fa-car"></i>
+                        <p>Free Shipping</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="services__item">
+                        <i class="fa fa-money"></i>
+                        <p>cash on delivery</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="services__item">
+                        <i class="fa fa-support"></i>
+                        <p>Delivery within 24 hours</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="services__item">
+                        <i class="fa fa-shopping-bag"></i>
+                        <p>Easy of shopping</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End -->
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#"> ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion-master/img/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instagram End -->
+   
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+</body>
+
+</html>
